@@ -58,5 +58,6 @@ To allow indexing, set the environment variable `INDEXING=on` in Cloudflare Page
 
 - Build command: `npm run build`
 - Build output directory: `dist`
-- Node version: 22 (`.nvmrc`)
+- Node version: 22 (`.nvmrc`, or env var `NODE_VERSION=22`)
+- Project type: **Pages** (not Workers). Workers cannot use a custom domain while DNS is at Namecheap.
 - Custom domain: `tutorials.siteposterpro.com`
