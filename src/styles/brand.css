@@ -1,0 +1,85 @@
+/* Site Poster Pro brand colors (from the app logo: navy #203f91 / #0b1439, red #ff3d3d) */
+
+/* Dark mode */
+:root {
+  --sl-color-accent-low: #3a0f18;
+  --sl-color-accent: #ff4b4b;
+  --sl-color-accent-high: #ffc9c4;
+  --sl-color-white: #ffffff;
+  --sl-color-gray-1: #e6e9f5;
+  --sl-color-gray-2: #c0c6de;
+  --sl-color-gray-3: #8b93b8;
+  --sl-color-gray-4: #545c82;
+  --sl-color-gray-5: #333a5c;
+  --sl-color-gray-6: #1a2148;
+  --sl-color-black: #0b1439;
+}
+
+/* Light mode */
+:root[data-theme='light'] {
+  --sl-color-accent-low: #ffe1de;
+  --sl-color-accent: #c81e3a;
+  --sl-color-accent-high: #5a0d1c;
+  --sl-color-white: #0b1439;
+  --sl-color-gray-1: #1a2148;
+  --sl-color-gray-2: #333a5c;
+  --sl-color-gray-3: #545c82;
+  --sl-color-gray-4: #8b93b8;
+  --sl-color-gray-5: #c0c6de;
+  --sl-color-gray-6: #eef0f8;
+  --sl-color-gray-7: #f7f8fc;
+  --sl-color-black: #ffffff;
+}
+
+/* Status and publishing-mode badges */
+.sp-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+.sp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: var(--sl-text-xs);
+  font-weight: 600;
+  border: 1px solid currentColor;
+  line-height: 1.6;
+}
+.sp-badge--in-progress { color: #b7791f; }
+.sp-badge--verified { color: #2f9e62; }
+.sp-badge--automated { color: #2b6cb0; }
+.sp-badge--extension { color: #8a4fd6; }
+.sp-badge--manual { color: #c05621; }
+:root:not([data-theme='light']) .sp-badge--in-progress { color: #f6c76a; }
+:root:not([data-theme='light']) .sp-badge--verified { color: #6fdc9f; }
+:root:not([data-theme='light']) .sp-badge--automated { color: #7fb3f0; }
+:root:not([data-theme='light']) .sp-badge--extension { color: #c4a3f5; }
+:root:not([data-theme='light']) .sp-badge--manual { color: #f5a86b; }
+
+/* Screenshots */
+.sl-markdown-content img {
+  border-radius: 0.5rem;
+  border: 1px solid var(--sl-color-gray-5);
+}
+
+/* Brand-red primary buttons in both themes */
+.sl-link-button.primary,
+.action.primary {
+  background: #e8343f;
+  border-color: #e8343f;
+  color: #ffffff;
+}
+.sl-link-button.primary:hover,
+.action.primary:hover {
+  background: #c81e3a;
+  border-color: #c81e3a;
+}
+
+/* Short site title on small screens */
+@media (max-width: 50rem) {
+  .site-title span { font-size: var(--sl-text-base); }
+}

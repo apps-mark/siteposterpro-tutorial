@@ -1,0 +1,39 @@
+---
+title: Site Poster Pro Tutorials
+description: Learn how to connect your publishing accounts, import TXT articles, schedule posts and track published URLs with Site Poster Pro.
+template: splash
+hero:
+  tagline: Step-by-step guides for connecting your accounts and publishing content to more than 20 platforms with Site Poster Pro.
+  image:
+    file: ../../assets/logo.svg
+  actions:
+    - text: Get started
+      link: /getting-started/introduction/
+      icon: right-arrow
+    - text: Connect a platform
+      link: /platforms/overview/
+      icon: open-book
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+## Find your tutorial
+
+<CardGrid>
+  <Card title="Getting Started" icon="rocket">
+    Create your account, learn the dashboard and publish your first post.
+  </Card>
+  <Card title="Publishing Platforms" icon="puzzle">
+    One guide per platform: connecting your account, preparing content, publishing and troubleshooting.
+  </Card>
+  <Card title="Scheduling" icon="seti:clock">
+    Publish now or schedule posts with intervals and the Publishing Calendar.
+  </Card>
+  <Card title="Results" icon="list-format">
+    Find, copy and export the URLs of everything you published.
+  </Card>
+</CardGrid>
+
+<LinkCard title="Connecting publishing accounts" href="/getting-started/connect-publishing-accounts/" description="Start here if you want to link a platform to Site Poster Pro." />
+<LinkCard title="Troubleshooting" href="/troubleshooting/account-connection-problems/" description="Connection, OAuth, scheduling and failed post problems." />

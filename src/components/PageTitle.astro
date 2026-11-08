@@ -1,0 +1,34 @@
+---
+// Wraps Starlight's page title and adds status + publishing-mode badges
+// driven by frontmatter (status, publishing). See src/content.config.ts.
+import Default from '@astrojs/starlight/components/PageTitle.astro';
+
+const data = Astro.locals.starlightRoute.entry.data as {
+  status?: 'verified' | 'in-progress';
+  publishing?: 'automated' | 'extension' | 'manual';
+  template?: string;
+};
+
+const publishingLabels = {
+  automated: 'Fully automated publishing',
+  extension: 'Publishes via browser extension',
+  manual: 'Requires manual steps',
+} as const;
+
+const isSplash = data.template === 'splash';
+---
+
+<Default />
+{
+  !isSplash && (
+    <div class="sp-badges">
+      {data.status === 'in-progress' && (
+        <span class="sp-badge sp-badge--in-progress">Tutorial in progress</span>
+      )}
+      {data.status === 'verified' && <span class="sp-badge sp-badge--verified">Verified</span>}
+      {data.publishing && (
+        <span class={`sp-badge sp-badge--${data.publishing}`}>{publishingLabels[data.publishing]}</span>
+      )}
+    </div>
+  )
+}
