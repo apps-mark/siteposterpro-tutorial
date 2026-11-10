@@ -10,13 +10,14 @@ interface Props {
 }
 const { id, title, description, uploadDate, duration } = Astro.props;
 const thumb = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+const thumbFallback = `https://i.ytimg.com/vi/${id}/hqdefault.jpg`;
 const embed = `https://www.youtube-nocookie.com/embed/${id}`;
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'VideoObject',
   name: title,
   description,
-  thumbnailUrl: [thumb],
+  thumbnailUrl: [thumb, thumbFallback],
   uploadDate,
   embedUrl: `https://www.youtube.com/embed/${id}`,
   ...(duration ? { duration } : {}),
@@ -26,7 +27,7 @@ const jsonLd = {
 
 <div class="sp-video not-content" data-embed={embed} data-title={title}>
   <button type="button" class="sp-video__btn" aria-label={`Play video: ${title}`}>
-    <img src={thumb} alt={title} loading="lazy" width="1280" height="720" />
+    <img src={thumb} data-fallback={thumbFallback} alt={title} loading="lazy" width="1280" height="720" />
     <span class="sp-video__play" aria-hidden="true">
       <svg viewBox="0 0 68 48" width="68" height="48"><path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C55.2.3 34 .3 34 .3s-21.2 0-26.5 1.4a8.5 8.5 0 0 0-6 6C.1 13 .1 24 .1 24s0 11 1.4 16.3a8.5 8.5 0 0 0 6 6C12.8 47.7 34 47.7 34 47.7s21.2 0 26.5-1.4a8.5 8.5 0 0 0 6-6C67.9 35 67.9 24 67.9 24s0-11-1.4-16.3Z" fill="#e8343f"/><path d="M45 24 27 14v20" fill="#fff"/></svg>
     </span>
@@ -46,6 +47,13 @@ const jsonLd = {
 </style>
 
 <script>
+  // maxresdefault does not exist for every video: YouTube then serves a 120x90 grey placeholder or 404
+  document.querySelectorAll<HTMLImageElement>('.sp-video img[data-fallback]').forEach((img) => {
+    const useFallback = () => { if (img.dataset.fallback && img.src !== img.dataset.fallback) img.src = img.dataset.fallback; };
+    img.addEventListener('error', useFallback, { once: true });
+    if (img.complete && img.naturalWidth > 0 && img.naturalWidth <= 120) useFallback();
+    else img.addEventListener('load', () => { if (img.naturalWidth <= 120) useFallback(); }, { once: true });
+  });
   document.querySelectorAll<HTMLElement>('.sp-video').forEach((el) => {
     el.querySelector('button')?.addEventListener('click', () => {
       const iframe = document.createElement('iframe');
