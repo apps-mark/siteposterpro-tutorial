@@ -16,7 +16,7 @@ export const collections = {
       extend: z.object({
         status: z.enum(['verified', 'in-progress']).default('in-progress'),
         publishing: z.enum(['automated', 'extension', 'manual']).optional(),
-        verifiedAt: z.string().optional(),
+        verifiedAt: z.coerce.date().optional(),
       }),
     }),
   }),

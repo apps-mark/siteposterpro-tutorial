@@ -1,25 +1,134 @@
 ---
-title: "Publish to Blogger with Site Poster Pro"
-description: "How to connect your Blogger account to Site Poster Pro, prepare content, publish, schedule and fix common Blogger problems."
-status: in-progress
-# publishing: automated | extension | manual  (set only after verification)
+title: Auto Post to Blogger in Bulk with Site Poster Pro
+description: Connect Google Blogger to Site Poster Pro, then publish, schedule or draft TXT articles in bulk on your Blogger blogs through the official Blogger API.
+status: verified
+publishing: automated
+verifiedAt: 2026-11-10
 sidebar:
-  label: "Blogger"
+  label: Blogger
   order: 1
 ---
 
-:::note[Tutorial in progress]
-This tutorial is being written and verified against the live Site Poster Pro app. It will be published here as soon as every step has been checked.
-:::
+import { Aside, Steps } from '@astrojs/starlight/components';
+import YouTube from '../../../components/YouTube.astro';
 
-## Connect your Blogger account
+Site Poster Pro publishes to Google Blogger through the official Blogger API. You sign in with your Google account, pick one of your blogs and send any number of TXT articles to it: published right away, scheduled over days or weeks, or saved as drafts.
 
-Step-by-step instructions with screenshots for linking Blogger to Site Poster Pro.
+<YouTube
+  id="mxrZj_cWsKs"
+  title="Auto Post to Blogger in Bulk | Site Poster Pro"
+  description="How to connect Google Blogger to Site Poster Pro and publish or schedule TXT articles in bulk through the official Blogger API."
+  uploadDate="2026-11-10"
+/>
 
-## Prepare your content
+**In this video**
 
-## Publish
+- [0:00](https://youtu.be/mxrZj_cWsKs?t=0) Select Blogger, choose a client and create a test post
+- [0:47](https://youtu.be/mxrZj_cWsKs?t=47) Publish immediately and check the live URL
+- [1:26](https://youtu.be/mxrZj_cWsKs?t=86) Schedule 17 posts with images, one every 3 hours
+- [2:21](https://youtu.be/mxrZj_cWsKs?t=141) Why Site Poster Pro waits between posts
+- [3:30](https://youtu.be/mxrZj_cWsKs?t=210) Copy the URLs and check the Publishing Calendar
 
-## Scheduling
+## Before you start
+
+- A Google account that owns or can manage the Blogger blog you want to post to.
+- Your articles as **TXT files with HTML**. Each file becomes one post. The first `<h1>` becomes the post title and is removed from the body. Files without an H1 are blocked before publishing. See [TXT import format](/content/txt-import-format/).
+- Optional: images in JPG, PNG, WebP or GIF format, up to 10 MB each.
+
+You do **not** need a Google Cloud project, API key or OAuth client of your own. Site Poster Pro handles that for you.
+
+<Aside type="tip" title="Test with one post first">
+Before you send a large batch, publish a single post with one image. Check that the title, content and image look right on your blog. Then load the full batch.
+</Aside>
+
+## Connect Blogger and publish
+
+<Steps>
+
+1. **Open TXT Import and choose Google Blogger.**
+   In the dashboard, go to **TXT Import** and select **Google Blogger** under *Publish to*.
+
+2. **Assign a client (optional).**
+   If you work for clients, select the client for this batch. Every post is then labelled with that client in the Publishing Calendar and Published URLs. See [Working with clients](/content/working-with-clients/).
+
+3. **Upload your TXT files.**
+   Drop the files in the upload area or click **Select TXT files**. You can upload as many as you need.
+
+4. **Add images (optional).**
+   Choose **one image** to use for every post, or **exactly one image per TXT file**. Images are matched to the articles in order. Each image is placed at the top of its post, with the post title as alt text.
+
+5. **Click Connect Blogger.**
+   Sign in with the Google account that manages your blog and approve access. Site Poster Pro then loads the blogs available to that account.
+
+6. **Select the blog and the post status.**
+   Pick your blog under **Select Blogger**, then choose a **Post status**:
+   - **Publish immediately**: posts go live right away.
+   - **Schedule posts**: Blogger publishes each post at a planned time (see below).
+   - **Save as draft**: posts are created as drafts in Blogger for you to review.
+
+7. **Click Publish to Blogger** (or **Schedule to Blogger**).
+   Site Poster Pro shows the progress, for example *Publishing 3/17*. When it is done, the URL of every post appears under **Blogger URLs**.
+
+</Steps>
+
+<Aside>
+The Google sign-in is kept in your browser session only and is not stored by Site Poster Pro. In a new session, click **Connect Blogger** (or **Reconnect Blogger**) again.
+</Aside>
+
+## Schedule posts over days or weeks
+
+Choose **Schedule posts** as the post status and set:
+
+- **First post date** and **First post time**: when the first article goes live. This must be in the future.
+- **Interval**: the time between posts, in minutes, hours or days. Minute intervals use steps of 10 minutes, with a minimum of 10.
+
+Site Poster Pro shows a preview with the first and last publication time and the total number of posts. In the video, 17 posts start at 2:20 PM with one post every 3 hours, so the batch finishes about two days later.
+
+Click **Schedule to Blogger**. Site Poster Pro sends every post to Blogger with its planned publication time. **Blogger stores the schedule and publishes the posts itself**, so you can close your browser once scheduling has finished.
+
+## Why it takes a little time
+
+Blogger does not accept many posts in quick succession. To stay within its limits, Site Poster Pro:
+
+- waits **10 seconds between posts**, so 17 posts take about 3 minutes to send;
+- automatically **retries** when Blogger reports a rate limit, with increasing delays.
+
+Keep the page open until the progress message says all posts are published or scheduled. If something stops the batch, the button changes to **Resume from N**, so you continue where it stopped without creating duplicates.
+
+## Copy your URLs
+
+Under **Blogger URLs** you can:
+
+- **Copy URLs**: all post URLs, one per line;
+- copy the URLs **together with their publication dates**.
+
+Copy them straight after publishing or scheduling, for example into your link building sheet. You can always find them again later under [Published URLs](/results/published-urls/).
+
+## Check the Publishing Calendar
+
+Every Blogger post also appears in the [Publishing Calendar](/scheduling/publishing-calendar/). Select the client to see only that client's posts and switch to the week view to see what is scheduled and what is already live. Click a post to open it.
+
+Scheduled posts change from *Scheduled* to *Published* once they appear on your blog. Site Poster Pro checks this when you open the Publishing Calendar or Published URLs.
 
 ## Troubleshooting
+
+**"Choose a future start date and time for the Blogger schedule."**
+The first post time is in the past. Pick a later date or time.
+
+**"Choose either 1 image for all posts or exactly N images for N posts."**
+The number of images does not match the number of TXT files. Select one image, or exactly one per file.
+
+**A file is blocked before publishing.**
+The file has no usable `<h1>`. Add an H1 at the top of the article. See [H1 title requirements](/content/h1-title-requirements/).
+
+**"Blogger rate limit reached. Retrying in … seconds."**
+This is normal for larger batches. Site Poster Pro waits and retries automatically. Leave the page open.
+
+**The batch stopped halfway.**
+Read the message: it shows how many posts were completed and the error. Fix the cause if needed and click **Resume from N**.
+
+**A scheduled post still shows *Scheduled* after its publication time.**
+Open the Publishing Calendar or Published URLs to refresh the status. The status is read from your blog's public feed. If your blog is private, check the post directly in Blogger.
+
+**"Blogger is not configured yet."**
+The Blogger connection is not available on the Site Poster Pro side. Contact [Site Poster Pro support](mailto:support@siteposterpro.com).
