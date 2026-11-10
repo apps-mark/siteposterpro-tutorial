@@ -1,25 +1,133 @@
 ---
-title: "Publish to LiveJournal with Site Poster Pro"
-description: "How to connect your LiveJournal account to Site Poster Pro, prepare content, publish, schedule and fix common LiveJournal problems."
-status: in-progress
-# publishing: automated | extension | manual  (set only after verification)
+title: Auto Post to LiveJournal in Bulk with Site Poster Pro
+description: Connect your LiveJournal account to Site Poster Pro with your username and password, then publish or schedule TXT articles in bulk with images.
+status: verified
+publishing: automated
+verifiedAt: 2026-11-10
 sidebar:
-  label: "LiveJournal"
+  label: LiveJournal
   order: 11
 ---
 
-:::note[Tutorial in progress]
-This tutorial is being written and verified against the live Site Poster Pro app. It will be published here as soon as every step has been checked.
-:::
+import { Aside, Steps } from '@astrojs/starlight/components';
+import YouTube from '../../../components/YouTube.astro';
+
+Site Poster Pro publishes to LiveJournal with your LiveJournal username and password. You connect an account once, then send any number of TXT articles to it: published right away or scheduled over several days. You can connect multiple LiveJournal accounts.
+
+<YouTube
+  id="m47gC7LJcyk"
+  title="Auto Post to LiveJournal in Bulk | Site Poster Pro"
+  description="How to connect a LiveJournal account to Site Poster Pro, publish a test post and schedule TXT articles in bulk with images."
+  uploadDate="2026-11-10"
+/>
+
+**In this video**
+
+- [0:00](https://youtu.be/m47gC7LJcyk?t=0) Connect a LiveJournal account
+- [0:21](https://youtu.be/m47gC7LJcyk?t=21) Why connecting and posting can be slow
+- [0:50](https://youtu.be/m47gC7LJcyk?t=50) New accounts: publish the first post manually
+- [1:02](https://youtu.be/m47gC7LJcyk?t=62) Select the client and publish a test post with an image
+- [1:24](https://youtu.be/m47gC7LJcyk?t=84) Schedule 15 posts, one every 5 hours
+- [1:55](https://youtu.be/m47gC7LJcyk?t=115) Check the calendar and Published URLs
+
+## Before you start
+
+- **A LiveJournal account.** Create it on LiveJournal first. Site Poster Pro cannot create accounts for you.
+- **New account? Publish the first post yourself**, directly on LiveJournal, before you connect it to Site Poster Pro.
+- Your articles as **TXT files with HTML**. Each file becomes one post: the first `<h1>` becomes the title and the remaining HTML becomes the post. Files without an H1 are blocked before publishing. See [TXT import format](/content/txt-import-format/).
+- Optional: images in JPG, PNG, WebP or GIF format.
 
 ## Connect your LiveJournal account
 
-Step-by-step instructions with screenshots for linking LiveJournal to Site Poster Pro.
+<Steps>
 
-## Prepare your content
+1. **Open Connections** in Site Poster Pro and go to the **LiveJournal** section.
 
-## Publish
+2. **Enter your LiveJournal username and password.**
 
-## Scheduling
+3. **Click Connect LiveJournal.**
+   If you already have an account connected, the button is called **Add another LiveJournal account**.
+
+4. **Wait for the confirmation.**
+   Connecting to LiveJournal can take **30 to 40 seconds**. That is normal. When it is done you see *LiveJournal account connected* and the account appears in the list.
+
+</Steps>
+
+<Aside type="tip">
+Use a LiveJournal account that you only use for publishing, with its own strong password. If you change the password on LiveJournal later, connect the account again.
+</Aside>
+
+Publishing for clients? Assign the account to the right client under **Clients** → **+ Connections**. See [Working with clients](/content/working-with-clients/).
+
+## Publish or schedule your articles
+
+<Steps>
+
+1. **Open TXT Import and select LiveJournal** under *Publish to*.
+
+2. **Select the client** (optional). Only the LiveJournal accounts assigned to that client are shown.
+
+3. **Upload your TXT files.**
+
+4. **Choose the LiveJournal account.** Just connected one and don't see it? Click **Refresh**.
+
+5. **Add images (optional).**
+   Choose **one image** for all posts, or **exactly one image per TXT file**. Images are matched to the articles in order.
+
+6. **Choose the post status:**
+   - **Publish immediately**: posts go live right away.
+   - **Schedule posts**: set the first post date, first post time and the interval between posts.
+
+7. **Click Publish to LiveJournal** (or **Schedule to LiveJournal**).
+   The results list every post with its status. For published posts you get the URL and a **Copy URLs** button.
+
+</Steps>
+
+<Aside type="tip" title="Start with one test post">
+Publish a single article with one image first and check it on LiveJournal. Then upload the rest of your articles.
+</Aside>
+
+## How scheduling works
+
+Site Poster Pro shows a preview with the first and last publication time and the total number of posts. Minute intervals use steps of 10 minutes, with a minimum of 10. The first post time must be in the future.
+
+Site Poster Pro stores the schedule and publishes each post at its time, so **you can close your browser after scheduling**. A scheduled post gets its public LiveJournal URL when it is actually published. You then find it under [Published URLs](/results/published-urls/).
+
+### Take it slow on new accounts
+
+LiveJournal is strict with new accounts. If you already published a few posts on a new account today, start the schedule tomorrow and keep a wide interval. In the video, 15 posts start at 9 AM with one post every 5 hours, spread over 4 days.
+
+<Aside type="caution">
+This is a practical recommendation, not an official LiveJournal limit.
+</Aside>
+
+## Check your posts
+
+- **Publishing Calendar:** select the client to see every scheduled and published LiveJournal post. See [Publishing Calendar](/scheduling/publishing-calendar/).
+- **Published URLs:** filter on client and platform **LiveJournal** to see and copy the URLs of all published posts. See [Published URLs](/results/published-urls/).
 
 ## Troubleshooting
+
+**Connecting or publishing is slow.**
+LiveJournal often responds slowly. Connecting can take 30 to 40 seconds and publishing speed varies. Wait for the result before you click again.
+
+**"No LiveJournal accounts connected yet."**
+Connect an account under Connections first. Already did? Click **Refresh** in the publishing panel.
+
+**My account is not in the list.**
+If a client is selected, only accounts assigned to that client are shown. Assign the account under **Clients**, or select *No client / Unassigned*.
+
+**The connection fails.**
+Check your username and password by logging in on LiveJournal itself. Then try again. Changed your password? Connect the account again.
+
+**"Choose a future start date and time for the LiveJournal schedule."**
+The first post time is in the past. Pick a later date or time.
+
+**"Choose either 1 image for all posts or exactly N images for N posts."**
+The number of images does not match the number of TXT files.
+
+**A scheduled post has no URL yet.**
+That is expected. The URL is created when LiveJournal publishes the post at its scheduled time.
+
+**A warning says results could not be saved to Published URLs or My Calendar.**
+The posts were published, but Site Poster Pro could not record them. Copy the URLs from the results with **Copy URLs** before you leave the page.
