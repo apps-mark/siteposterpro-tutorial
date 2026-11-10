@@ -1,25 +1,121 @@
 ---
-title: "Publish to WordPress.com with Site Poster Pro"
-description: "How to connect your WordPress.com account to Site Poster Pro, prepare content, publish, schedule and fix common WordPress.com problems."
-status: in-progress
-# publishing: automated | extension | manual  (set only after verification)
+title: Auto Post to WordPress.com in Bulk with Site Poster Pro
+description: Connect your WordPress.com site to Site Poster Pro, then publish or schedule TXT articles in bulk with featured images. No passwords or API keys needed.
+status: verified
+publishing: automated
+verifiedAt: 2026-11-10
 sidebar:
-  label: "WordPress.com"
+  label: WordPress.com
   order: 20
 ---
 
-:::note[Tutorial in progress]
-This tutorial is being written and verified against the live Site Poster Pro app. It will be published here as soon as every step has been checked.
-:::
+import { Aside, Steps } from '@astrojs/starlight/components';
 
-## Connect your WordPress.com account
+Site Poster Pro publishes to WordPress.com through your own WordPress.com login. You connect a site once, then send any number of TXT articles to it: published right away or scheduled over days or weeks. You can connect as many WordPress.com sites as you like.
 
-Step-by-step instructions with screenshots for linking WordPress.com to Site Poster Pro.
+{/* VIDEO: add <YouTube id="..." /> here once the video is public */}
 
-## Prepare your content
+## Before you start
 
-## Publish
+- A WordPress.com account that can publish on the site you want to use.
+- Your articles as **TXT files with HTML**. Each file becomes one post and the first `<h1>` becomes the post title. Files without an H1 are blocked before publishing. See [TXT import format](/content/txt-import-format/).
+- Optional: images in JPG, PNG, WebP or GIF format, up to 10 MB each.
 
-## Scheduling
+You do **not** need your WordPress.com password, an application password or an API key. You approve access on WordPress.com itself.
+
+## Connect your WordPress.com site
+
+<Steps>
+
+1. **Log in to WordPress.com** in the same browser, with the account that manages the site.
+
+2. **Open Connections** in Site Poster Pro and go to the **WordPress.com** section.
+
+3. **Click Connect WordPress.com.**
+   If you already have a site connected, the button is called **Add another WordPress.com site**.
+
+4. **Select the site and approve access.**
+   WordPress.com shows the sites on your account. Choose the site you want to publish to and click **Connect**. You return to Site Poster Pro automatically.
+
+5. **Check the connection.**
+   The site now appears in the WordPress.com list under Connections. Repeat these steps for every extra site.
+
+</Steps>
+
+To remove a site later, use the disconnect option next to it in Connections.
+
+## Assign the site to a client (optional)
+
+If you publish for clients, link the site to the right client. Then only that client's accounts appear when you publish for them, which prevents posts from landing on the wrong site.
+
+1. Open **Clients**.
+2. On the client's card, click **+ Connections**.
+3. Under **Assign publishing connections**, select the WordPress.com site and save.
+
+See [Working with clients](/content/working-with-clients/) for more.
+
+## Publish or schedule your articles
+
+<Steps>
+
+1. **Open TXT Import and select WordPress.com** under *Publish to*.
+
+2. **Select the client** (optional). Double-check that it is the right client before you publish. The site list only shows the sites assigned to that client.
+
+3. **Upload your TXT files.**
+
+4. **Choose the WordPress.com site** from the list. Just connected a site and don't see it? Click **Refresh**.
+
+5. **Add images (optional).**
+   Choose **one image** for all posts, or **exactly one image per TXT file**. Images are matched to the articles in order and set as each post's **featured image**.
+
+6. **Choose the post status:**
+   - **Publish immediately**: posts go live right away.
+   - **Schedule posts**: set the first post date, first post time and the interval between posts.
+
+7. **Click Publish to WordPress.com** (or **Schedule WordPress.com posts**).
+   When it is done, Site Poster Pro shows a result for every post, for example *16 scheduled, 0 failed*. Published posts get an **Open WordPress.com post** link.
+
+</Steps>
+
+<Aside type="tip" title="Start with one test post">
+Publish one article with one image first. Check that the title, content and featured image look right on your site. Then upload the full batch.
+</Aside>
+
+## How scheduling works
+
+When you choose **Schedule posts**, Site Poster Pro shows a preview with the first and last publication time and the total number of posts. Minute intervals use steps of 10 minutes, with a minimum of 10. The first post time must be in the future.
+
+Site Poster Pro stores the schedule and publishes each post to WordPress.com at its time. **You can close your browser after scheduling.**
+
+### How often should you post?
+
+On a **new** WordPress.com site, don't publish too much at once. Spread your posts out. In the video, 16 articles are scheduled one every **5 hours**, which works out to about 4 to 5 posts a day.
+
+<Aside type="caution">
+This is a practical recommendation, not an official WordPress.com limit. A brand-new site that suddenly publishes dozens of posts with links can draw unwanted attention. A calm, regular schedule is safer.
+</Aside>
+
+## Check the Publishing Calendar
+
+Every WordPress.com post also appears in the [Publishing Calendar](/scheduling/publishing-calendar/). Select the client and look at the WordPress.com posts to see how many are scheduled per day. You can find the live URLs under [Published URLs](/results/published-urls/).
 
 ## Troubleshooting
+
+**"No WordPress.com sites connected yet."**
+Connect a site under Connections first. Already did? Click **Refresh** in the publishing panel.
+
+**My site is not in the list.**
+If a client is selected, only sites assigned to that client are shown. Assign the site to the client under **Clients**, or select *No client / Unassigned*.
+
+**"Choose a future start date and time for the WordPress.com schedule."**
+The first post time is in the past. Pick a later date or time.
+
+**"Choose either 1 image for all posts or exactly N images for N posts."**
+The number of images does not match the number of TXT files.
+
+**"Could not upload image … The batch was stopped before publishing."**
+One of the images failed to upload, so nothing was published. This prevents posts from going live without their image. Check the file (format, max 10 MB) and try again.
+
+**A post shows as failed in the results.**
+The error message under that post explains why. Fix the cause and publish only that article again.
