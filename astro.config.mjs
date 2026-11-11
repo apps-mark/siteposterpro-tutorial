@@ -1,6 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import rehypeExternalLinks from './src/plugins/rehype-external-links.mjs';
 
 const SITE = 'https://tutorials.siteposterpro.com';
 
@@ -11,6 +12,9 @@ const allowIndexing = process.env.INDEXING === 'on';
 export default defineConfig({
   site: SITE,
   trailingSlash: 'always',
+  markdown: {
+    rehypePlugins: [rehypeExternalLinks],
+  },
   integrations: [
     starlight({
       title: 'Site Poster Pro Tutorials',
@@ -30,6 +34,12 @@ export default defineConfig({
       },
       head: [
         { tag: 'meta', attrs: { property: 'og:site_name', content: 'Site Poster Pro Tutorials' } },
+        // Header social links (e.g. siteposterpro.com) open in a new tab
+        {
+          tag: 'script',
+          content:
+            "document.addEventListener('DOMContentLoaded',()=>document.querySelectorAll('.social-icons a[href^=\"http\"]').forEach(a=>{a.target='_blank';a.rel='me noopener noreferrer';}));",
+        },
         { tag: 'meta', attrs: { name: 'twitter:card', content: 'summary_large_image' } },
         ...(allowIndexing
           ? []
