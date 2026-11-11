@@ -1,25 +1,114 @@
 ---
-title: "Publish to Google Sites with Site Poster Pro"
-description: "How to connect your Google Sites account to Site Poster Pro, prepare content, publish, schedule and fix common Google Sites problems."
-status: in-progress
-# publishing: automated | extension | manual  (set only after verification)
+title: Publish to Google Sites in Bulk with Site Poster Pro
+description: Create a Google Site with all your TXT articles as pages using Site Poster Pro and the GSite Tier Publisher Chrome extension. Published URLs are sent back automatically.
+status: verified
+publishing: extension
+verifiedAt: 2026-11-11
 sidebar:
-  label: "Google Sites"
+  label: Google Sites
   order: 8
 ---
 
-:::note[Tutorial in progress]
-This tutorial is being written and verified against the live Site Poster Pro app. It will be published here as soon as every step has been checked.
-:::
+import { Aside, Steps } from '@astrojs/starlight/components';
+import YouTube from '../../../components/YouTube.astro';
+import extensionPopup from '../../../assets/screenshots/google-sites/gsite-tier-publisher-extension.png';
+import { Image } from 'astro:assets';
 
-## Connect your Google Sites account
+Site Poster Pro turns a batch of TXT articles into a complete Google Site: one site with one page per article. Google Sites has no publishing API, so the work runs in your own Chrome browser through the **GSite Tier Publisher** extension. When the site is published, the extension sends every page URL back to Site Poster Pro.
 
-Step-by-step instructions with screenshots for linking Google Sites to Site Poster Pro.
+<YouTube
+  id="EtzDIkazpco"
+  title="Publish to Google Sites in Bulk | Site Poster Pro"
+  description="How to create a Google Site with all your TXT articles as pages using Site Poster Pro and the GSite Tier Publisher Chrome extension."
+  uploadDate="2026-11-11"
+/>
 
-## Prepare your content
+**In this video**
 
-## Publish
+- [0:00](https://youtu.be/EtzDIkazpco?t=0) The Chrome extension you need
+- [0:09](https://youtu.be/EtzDIkazpco?t=9) Assign a client, name the site and add your articles
+- [0:31](https://youtu.be/EtzDIkazpco?t=31) Create the Google Site and connect the extension
+- [0:55](https://youtu.be/EtzDIkazpco?t=55) Choose a Google account and start publishing
+- [1:41](https://youtu.be/EtzDIkazpco?t=101) Let it finish: don't click Publish yourself
+- [2:33](https://youtu.be/EtzDIkazpco?t=153) The URLs come back to Site Poster Pro
 
-## Scheduling
+## Good to know first
+
+- **Chrome only.** Publishing runs through a Chrome extension, in your own browser. Keep Chrome open until the process is finished.
+- **No images.** Google Sites pages are created with text and links only.
+- **No connected accounts.** Google Sites does not use the accounts from Connections. You choose the Google account in the extension each time.
+- **No scheduling.** A Google Site is created and published in one run.
+
+## Before you start
+
+- **Google Chrome** with the **GSite Tier Publisher** extension installed. Use the install link in Site Poster Pro. Version **4.72.3 or newer** is required.
+- A **Google account** that you want to create the site with.
+- Your articles as **TXT files with HTML**. Each file becomes one page: the first `<h1>` becomes the page title. Files without an H1 are blocked. See [TXT import format](/content/txt-import-format/).
+
+## Create your Google Site
+
+<Steps>
+
+1. **Open TXT Import and select Google Sites** under *Publish to*.
+
+2. **Assign a client (optional).**
+   The client is only used to label the result in your overviews. Client connections are not used for Google Sites.
+
+3. **Enter the Google Site title.**
+   This becomes the name of the site. If the name is already taken on that Google account, Google Sites adds a number to it automatically.
+
+4. **Upload your TXT files.** Every file becomes one page of the site.
+
+5. **Click Create Google Site.**
+   Site Poster Pro prepares the publishing job and connects to the extension. You see a message like *GSite Tier Publisher connected, 9 pages ready*.
+
+   Not ready to publish yet? Click **Save Draft** instead. You can load the batch later with **Load Saved Draft**, on any device where you're signed in.
+
+6. **Open the GSite Tier Publisher extension** in Chrome.
+   It shows **Connected**, the site name, the number of pages and *Locked to Tier 1*. If it doesn't show your job yet, click **Get next publishing job**.
+
+7. **Click Choose Google Account** and pick the Google account for this site.
+
+8. **Click Open Google Sites & start.**
+   The extension opens Google Sites and creates the site and its pages automatically.
+
+</Steps>
+
+<figure>
+  <Image src={extensionPopup} alt="The GSite Tier Publisher extension showing Connected, a job with 9 pages locked to Tier 1, and the buttons Get next publishing job, Choose Google Account and Open Google Sites & start." width={420} />
+  <figcaption>The GSite Tier Publisher extension, connected and ready to publish a site with 9 pages.</figcaption>
+</figure>
+
+## Let it finish
+
+<Aside type="caution" title="Don't click Publish yourself">
+Let the extension run until the end. Don't click anything in Google Sites while it is working, and never click **Publish** manually. The extension publishes the site itself and then reads the page URLs. If you interfere, the URLs may not come back to Site Poster Pro.
+</Aside>
+
+A few pages are done in a minute or two. Larger sites take longer: with **30 to 60 pages**, Google Sites itself gets slower as the site grows. Keep the tab open and wait.
+
+## Get your URLs
+
+When the site is published, the extension sends all page URLs back to Site Poster Pro. You see a confirmation that the site was published and how many page URLs were saved.
+
+Open [Published URLs](/results/published-urls/), select **Google Sites** and use **Copy all URLs** to copy every page URL at once.
 
 ## Troubleshooting
+
+**"Chrome Extension did not confirm the connection."**
+The extension is not installed, not enabled or the page needs a refresh. Install or enable GSite Tier Publisher, refresh Site Poster Pro and click **Create Google Site** again.
+
+**"GSite Tier Publisher v… is outdated."**
+Your extension version is too old. Update it to 4.72.3 or newer, reload the extension in `chrome://extensions` and refresh Site Poster Pro.
+
+**The extension doesn't show my job.**
+Click **Get next publishing job** in the extension.
+
+**The site was published, but the URLs are missing in Site Poster Pro.**
+Open the extension and click **Retry published page URLs (no republish)**. It reads the URLs again without publishing the site a second time.
+
+**The site name has a number at the end.**
+That name was already used on the Google account. Google Sites adds the number automatically. This is normal.
+
+**It takes a long time.**
+Larger sites take longer because Google Sites slows down as pages are added. Let it run and don't close the tab.
