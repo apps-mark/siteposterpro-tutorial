@@ -1,25 +1,136 @@
 ---
-title: "Publish to Bluesky with Site Poster Pro"
-description: "How to connect your Bluesky account to Site Poster Pro, prepare content, publish, schedule and fix common Bluesky problems."
-status: in-progress
-# publishing: automated | extension | manual  (set only after verification)
+title: Auto Post to Bluesky in Bulk with Site Poster Pro
+description: Connect Bluesky to Site Poster Pro with an app password, then publish or schedule short posts in bulk, with images and links. Includes tips for generating posts with WP Publisher Pro.
+status: verified
+publishing: automated
+verifiedAt: 2026-11-12
 sidebar:
-  label: "Bluesky"
+  label: Bluesky
   order: 2
 ---
 
-:::note[Tutorial in progress]
-This tutorial is being written and verified against the live Site Poster Pro app. It will be published here as soon as every step has been checked.
-:::
+import { Aside, Steps } from '@astrojs/starlight/components';
+import YouTube from '../../../components/YouTube.astro';
+
+Site Poster Pro publishes short posts to Bluesky. You connect your account once with an **app password**, then publish or schedule as many posts as you want. You can connect multiple Bluesky accounts.
+
+<YouTube
+  id="Ui3jGWpji5g"
+  title="Auto Post to Bluesky in Bulk | Site Poster Pro"
+  description="How to connect Bluesky to Site Poster Pro, generate Bluesky posts with WP Publisher Pro and schedule them in bulk."
+  uploadDate="2026-11-12"
+/>
+
+**In this video**
+
+- [0:00](https://youtu.be/Ui3jGWpji5g?t=0) Connect a Bluesky account
+- [0:11](https://youtu.be/Ui3jGWpji5g?t=11) Generate Bluesky posts with WP Publisher Pro
+- [0:46](https://youtu.be/Ui3jGWpji5g?t=46) Prepare the posts: images and links
+- [1:10](https://youtu.be/Ui3jGWpji5g?t=70) Upload and schedule in TXT Import
+- [1:21](https://youtu.be/Ui3jGWpji5g?t=81) Check the calendar
 
 ## Connect your Bluesky account
 
-Step-by-step instructions with screenshots for linking Bluesky to Site Poster Pro.
+Site Poster Pro connects with your **handle** and an **app password**. Never use your normal Bluesky password.
 
-## Prepare your content
+<Steps>
 
-## Publish
+1. **Create an app password in Bluesky.**
+   In Bluesky, go to **Settings → Privacy and security → App passwords** and create a new one, for example named *Site Poster Pro*. Copy it.
 
-## Scheduling
+2. **Open Connections** in Site Poster Pro and go to the **Bluesky** section.
+
+3. **Enter your handle**, for example `your-handle.bsky.social`. Leave out the `@`.
+
+4. **Paste the app password.**
+
+5. **Click Connect Bluesky.**
+   If you already have an account connected, the button is called **Add another Bluesky account**. You see *Bluesky account connected* and the account appears in the list.
+
+</Steps>
+
+<Aside type="caution" title="App password, not your login password">
+An app password only gives access to posting and can be revoked in Bluesky at any time without changing your real password. If you revoke it, connect the account again with a new app password.
+</Aside>
+
+Publishing for clients? Assign the account to the right client under **Clients** → **+ Connections**. See [Working with clients](/content/working-with-clients/).
+
+## How your TXT files become Bluesky posts
+
+Bluesky posts are short, so Site Poster Pro converts each TXT file into one post:
+
+- The `<h1>` becomes the **headline** of the post.
+- The article text is shortened to an **excerpt** that fits Bluesky's text limit.
+- The **first link** in the article is kept in the post when possible.
+
+Long articles therefore lose most of their text. For Bluesky, it works best to start from content written as short posts.
+
+## Generate Bluesky posts with WP Publisher Pro
+
+The fastest way to get posts that fit is the social posts generator in [WP Publisher Pro](https://wppublisherpro.com/). This step is separate from Site Poster Pro.
+
+1. In WP Publisher Pro, open **social posts**, enter your keywords and URLs and choose **Bluesky** as the platform. The posts then stay within Bluesky's character limit.
+2. Add your own prompt to steer the content.
+3. Generate the posts and **download the zip file**. Unzip it: you get one TXT file per post.
+
+<Aside type="tip" title="Put the link in its own post">
+Instead of linking to your money site in every post, create **two to four posts per target page** and put the URL in only one of them. The other posts talk about the topic without a link. This looks more natural than a feed full of identical links.
+</Aside>
+
+## Publish or schedule your posts
+
+<Steps>
+
+1. **Open TXT Import and select Bluesky** under *Publish to*.
+
+2. **Select the client** (optional). Only the Bluesky accounts assigned to that client are shown.
+
+3. **Upload your TXT files.** Select the unzipped files; TXT Import accepts `.txt` files, not the zip itself.
+
+4. **Choose the Bluesky account.** Just connected one and don't see it? Click **Refresh**.
+
+5. **Add images (optional).**
+   Choose **one image** for all posts, or **exactly one image per TXT file**. Use JPG, PNG or WebP of **at most 1 MB**: that is Bluesky's limit.
+
+6. **Choose the post status:**
+   - **Publish immediately**: posts go live right away.
+   - **Schedule posts**: set the first post date, first post time and the interval between posts.
+
+7. **Click Publish to Bluesky** (or **Schedule to Bluesky**).
+   The results show every post with its status and, once published, its URL.
+
+</Steps>
+
+## How scheduling works
+
+Site Poster Pro shows a preview with the first and last publication time and the total number of posts. Minute intervals use steps of 10 minutes, with a minimum of 10. The first post time must be in the future.
+
+Site Poster Pro stores the schedule and publishes each post at its time, so **you can close your browser after scheduling**.
+
+A scheduled post gets its Bluesky URL when it is published. While the page is open, the results update automatically every 30 seconds; you can also click **Refresh URLs**. Afterwards you find all URLs under [Published URLs](/results/published-urls/), and all scheduled and published posts in the [Publishing Calendar](/scheduling/publishing-calendar/).
 
 ## Troubleshooting
+
+**The connection fails.**
+Check that you used an **app password**, not your normal password, and that the handle is complete (for example `name.bsky.social`) without `@`. Created the app password a while ago? It may have been revoked: create a new one.
+
+**"No Bluesky accounts connected yet."**
+Connect an account under Connections first. Already did? Click **Refresh** in the publishing panel.
+
+**My account is not in the list.**
+If a client is selected, only accounts assigned to that client are shown. Assign the account under **Clients**, or select *No client / Unassigned*.
+
+**My post is much shorter than my article.**
+That is expected. Bluesky posts have a strict character limit, so Site Poster Pro uses the headline and a short excerpt. Generate posts written for Bluesky instead.
+
+**An image is rejected.**
+Bluesky accepts images up to 1 MB. Compress the image or save it as JPG or WebP.
+
+**"Choose either 1 image for all posts or exactly N images for N posts."**
+The number of images does not match the number of TXT files.
+
+**"Choose a future start date and time for the Bluesky schedule."**
+The first post time is in the past. Pick a later date or time.
+
+**A scheduled post has no URL yet.**
+That is expected. The URL is created when the post is published at its scheduled time.
