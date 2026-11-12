@@ -1,25 +1,128 @@
 ---
-title: "Publish to Google Sheets with Site Poster Pro"
-description: "How to connect your Google Sheets account to Site Poster Pro, prepare content, publish, schedule and fix common Google Sheets problems."
-status: in-progress
-# publishing: automated | extension | manual  (set only after verification)
+title: Publish to Google Sheets with Site Poster Pro
+description: Add your articles to a Google Sheet with Site Poster Pro, one row per article with a clickable keyword link. Includes the special TXT format and a downloadable example file.
+status: verified
+publishing: automated
+verifiedAt: 2026-11-12
 sidebar:
-  label: "Google Sheets"
+  label: Google Sheets
   order: 7
 ---
 
-:::note[Tutorial in progress]
-This tutorial is being written and verified against the live Site Poster Pro app. It will be published here as soon as every step has been checked.
-:::
+import { Aside, Steps } from '@astrojs/starlight/components';
+import YouTube from '../../../components/YouTube.astro';
 
-## Connect your Google Sheets account
+Site Poster Pro writes your articles into a Google Sheet: **one row per article**, with the title, the article text, a **clickable keyword** that links to your website, and the URL. For the keyword link, your TXT files need two extra lines of code at the top. This page explains that format and gives you an example file to download.
 
-Step-by-step instructions with screenshots for linking Google Sheets to Site Poster Pro.
+<YouTube
+  id="hZ77gk7m8_U"
+  title="Publish to Google Sheets with Site Poster Pro"
+  description="How to generate posts with WP Publisher Pro and publish them to Google Sheets with Site Poster Pro, with clickable keyword links."
+  uploadDate="2026-11-12"
+/>
 
-## Prepare your content
+**In this video**
 
-## Publish
+- [0:00](https://youtu.be/hZ77gk7m8_U?t=0) Why Google Sheets needs special code in the content
+- [0:10](https://youtu.be/hZ77gk7m8_U?t=10) Generate the posts in WP Publisher Pro
+- [1:14](https://youtu.be/hZ77gk7m8_U?t=74) Import the TXT files in Site Poster Pro
+- [1:27](https://youtu.be/hZ77gk7m8_U?t=87) Connect Google and create a new spreadsheet
+- [1:38](https://youtu.be/hZ77gk7m8_U?t=98) Publish to Google Sheets
+- [1:49](https://youtu.be/hZ77gk7m8_U?t=109) The result: rows with a clickable keyword
 
-## Scheduling
+## What ends up in the sheet
+
+Every TXT file becomes one row with four columns:
+
+| Title | Content | Keyword | URL |
+| --- | --- | --- | --- |
+| The `<h1>` of the article | The article as readable text | Your keyword, **clickable**, linking to the URL | The URL as plain text |
+
+- The **Content** column contains readable text, not HTML. Paragraphs and lists are kept. Links inside the article are written as *anchor text (URL)*.
+- Long articles show as one line in the sheet. Click the cell to see the full text.
+- Images are not included.
+
+## The special TXT format
+
+For Google Sheets, each TXT file starts with two extra lines: the **keyword** and the **link**. They fill the Keyword and URL columns and make the keyword clickable.
+
+```html
+[[KEYWORD:best NAD supplements by NAD Supplement Guide]]
+[[LINK:https://nadsupplementguide.com/best-nad-supplement/]]
+
+<h1>Choosing the Best NAD Supplements by NAD Supplement Guide</h1>
+<p>When exploring the best NAD supplements by NAD Supplement Guide, ...</p>
+<p>A primary challenge for consumers is ...</p>
+```
+
+<a href="/downloads/google-sheets-example.txt" download>**⬇ Download the example TXT file**</a>
+
+Rules for the two lines:
+
+- Write them exactly like this: **capital letters**, double square brackets and a colon. `[[keyword:...]]` in lower case does not work.
+- Put **each on its own line**, above the `<h1>`.
+- The link must start with `https://` or `http://`.
+- Site Poster Pro removes both lines from the article text, so they never appear in the Content column.
+- Without these lines, the row is still added, but the **Keyword and URL columns stay empty**.
+
+The rest of the file follows the normal rules: the first `<h1>` becomes the title, and the HTML below it becomes the content. Files without an H1 are blocked. See [TXT import format](/content/txt-import-format/).
+
+## Create the TXT files with WP Publisher Pro
+
+You can write these files by hand, but the fastest way is [WP Publisher Pro](https://wppublisherpro.com/). Its social posts generator creates the articles and adds the `[[KEYWORD:...]]` and `[[LINK:...]]` lines for you.
+
+1. In WP Publisher Pro, open the **social posts** section and enter your keywords, anchors and URLs.
+2. Choose **Google Sheets** as the output and add your own prompt if you want to steer the content.
+3. Generate the posts and **download the zip file**.
+4. **Unzip** it on your computer. You now have one TXT file per post, ready for Site Poster Pro.
+
+<Aside type="tip">
+Ask for variety in your prompt. In the video, the posts mix perspectives ("I use…", "I know someone who uses…") instead of only promotional claims, so the rows don't all read the same.
+</Aside>
+
+## Publish to Google Sheets
+
+<Steps>
+
+1. **Open TXT Import and select Google Sheets** under *Publish to*.
+
+2. **Upload your TXT files.** Select the unzipped files; TXT Import accepts `.txt` files, not the zip itself.
+
+3. **Click Connect Google Sheets**, choose your Google account and approve access.
+   You see *Google Sheets authorized for this session*.
+
+4. **Choose where the rows go:**
+   - **Create new spreadsheet**: enter a name, for example the name of the website. Site Poster Pro creates it with a tab called *Posts*.
+   - **Use existing spreadsheet**: paste the spreadsheet URL or ID, click **Load spreadsheet** and pick the worksheet. The tab must be **empty** or already have the columns *Title, Content, Keyword, URL*.
+
+5. **Click Publish to Google Sheets.**
+   This takes only a few seconds. You see how many articles were saved and an **Open Google spreadsheet** link.
+
+</Steps>
+
+<Aside type="note">
+Google Sheets is **publish now only**. Scheduling is not available. The rows also don't appear in Published URLs or the Publishing Calendar; use the spreadsheet link instead.
+</Aside>
 
 ## Troubleshooting
+
+**The Keyword and URL columns are empty.**
+The TXT files don't have the `[[KEYWORD:...]]` and `[[LINK:...]]` lines, or they are written differently (lower case, single brackets, no colon). Compare with the [example file](/downloads/google-sheets-example.txt).
+
+**"Invalid URL in [[LINK:...]]."**
+The link doesn't start with `https://` or `http://`.
+
+**"This worksheet has other columns."**
+The tab you chose already contains other data. Choose an empty tab, or one with the columns Title, Content, Keyword, URL.
+
+**"Enter a valid Google Sheets URL or spreadsheet ID."**
+Paste the full spreadsheet URL from your browser, for example `https://docs.google.com/spreadsheets/d/…`.
+
+**"Please reconnect your Google account."**
+The Google sign-in has expired. It lasts about an hour. Click **Switch / reconnect Google account**.
+
+**"Google Sheets publishing not confirmed."**
+Open the spreadsheet first and check which rows were added before you try again, so you don't get duplicate rows. If a new spreadsheet was already created, a retry uses that same spreadsheet.
+
+**"A value exceeds the Google Sheets cell limit."**
+One article is too long for a single cell. Shorten it or split it.

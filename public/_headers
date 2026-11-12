@@ -5,3 +5,8 @@
 
 /_astro/*
   Cache-Control: public, max-age=31536000, immutable
+
+/downloads/*
+  Content-Type: text/plain; charset=utf-8
+  Content-Disposition: attachment
+  X-Robots-Tag: noindex
