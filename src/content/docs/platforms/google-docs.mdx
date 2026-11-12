@@ -1,25 +1,151 @@
 ---
-title: "Publish to Google Docs with Site Poster Pro"
-description: "How to connect your Google Docs account to Site Poster Pro, prepare content, publish, schedule and fix common Google Docs problems."
-status: in-progress
-# publishing: automated | extension | manual  (set only after verification)
+title: Publish to Google Docs in Bulk with Site Poster Pro
+description: Turn TXT articles into Google Docs with Site Poster Pro, keep them private or publish them to the web, and schedule batches that publish automatically.
+status: verified
+publishing: automated
+verifiedAt: 2026-11-12
 sidebar:
-  label: "Google Docs"
+  label: Google Docs
   order: 6
 ---
 
-:::note[Tutorial in progress]
-This tutorial is being written and verified against the live Site Poster Pro app. It will be published here as soon as every step has been checked.
-:::
+import { Aside, Steps } from '@astrojs/starlight/components';
+import YouTube from '../../../components/YouTube.astro';
 
-## Connect your Google Docs account
+Site Poster Pro turns every TXT article into a Google Doc in your own Google account. You choose whether the documents stay **private** or are **published to the web**, so they get a public URL that search engines can find. You can create documents right away or schedule a batch that Site Poster Pro creates and publishes for you.
 
-Step-by-step instructions with screenshots for linking Google Docs to Site Poster Pro.
+<YouTube
+  id="yCqir7x6NFg"
+  title="Publish to Google Docs in Bulk | Site Poster Pro"
+  description="How to create Google Docs from TXT articles with Site Poster Pro, publish them to the web and schedule batches."
+  uploadDate="2026-11-12"
+/>
 
-## Prepare your content
+**In this video**
 
-## Publish
+- [0:00](https://youtu.be/yCqir7x6NFg?t=0) Connect Google Docs and create a document
+- [0:17](https://youtu.be/yCqir7x6NFg?t=17) Private or published to the web
+- [0:33](https://youtu.be/yCqir7x6NFg?t=33) Check the public document and Published URLs
+- [1:00](https://youtu.be/yCqir7x6NFg?t=60) Schedule Google Docs, one every 2 hours
+- [1:22](https://youtu.be/yCqir7x6NFg?t=82) Check the schedule in the calendar
 
-## Scheduling
+## What gets created
+
+- **One Google Doc per TXT file.** The first `<h1>` becomes the document title and heading.
+- **Formatting is kept:** paragraphs, headings, bold text and hyperlinks. Keyword links from your TXT files are added too.
+- **No images.** Google Docs are created with text and links only.
+- Documents are created in the Google account you connect. Site Poster Pro can only access the documents it creates itself, not the rest of your Google Drive.
+
+## Before you start
+
+- A **Google account** for the documents.
+- Your articles as **TXT files with HTML**. Files without an H1 are blocked. See [TXT import format](/content/txt-import-format/).
+
+You don't need a Google Cloud project or API key.
+
+## Create Google Docs now
+
+<Steps>
+
+1. **Open TXT Import and select Google Docs** under *Publish to*.
+
+2. **Select the client** (optional). The documents are labelled with that client in Published URLs and the calendar.
+
+3. **Upload your TXT files.**
+
+4. **Click Connect Google Docs**, choose your Google account and approve access.
+   You see *Google Docs connected* with your email address.
+
+5. **Choose private or public.**
+   - Leave **Publish to web automatically after creating each Doc** **off** to create private documents. They are not publicly accessible and won't be indexed.
+   - Turn it **on** to publish every document to the web, so it gets a public URL anyone can open.
+
+6. **Click Create Google Docs** (or **Create & Publish to Web**).
+   Site Poster Pro shows the progress per document. Each document gets an *Open Google Doc* link and, when published, its **public Publish to web URL**.
+
+</Steps>
+
+<Aside type="note" title="Public means verified">
+A public URL is only saved after Site Poster Pro has checked that the document really opens **without a Google login**. Results show *Published to web · Anonymous access verified*. You don't need to check it in an incognito window yourself.
+</Aside>
+
+### Publish a private document later
+
+Created a document privately and want it public after all? In the results, click **Publish to Web via Google API** next to that document.
+
+If Google blocks the automatic publication, the document shows **Manual publishing needed**. Then:
+
+1. Open the document and choose **File → Share → Publish to web** in Google Docs.
+2. Copy the public URL. It ends in `/pub`.
+3. Paste it into the field next to the document and click **Verify & Save public URL**.
+
+## Schedule Google Docs
+
+The scheduler creates and publishes the documents at their planned times, **even when your browser is closed**. It needs its own one-time authorization.
+
+<Steps>
+
+1. **Upload your TXT files** in TXT Import with Google Docs selected, and select the client.
+   You can schedule **up to 15 files per batch**.
+
+2. **Click Connect Scheduler (offline)** and approve access with your Google account.
+   You see *Offline Google Docs authorization saved for* your email address.
+
+3. **Under Google Docs Scheduler, set:**
+   - **Offline Google account**: the account to create the documents in;
+   - **First publish date & time**, in your local time;
+   - **Interval**: the time between documents, in minutes, hours or days.
+
+4. **Click Schedule & Publish Google Docs.**
+   The documents appear in the queue with their planned times.
+
+</Steps>
+
+<Aside type="caution" title="Scheduled documents are always public">
+Scheduled documents are **published to the web automatically**. They are not created before their scheduled time, so you won't see them in Google Drive until then.
+</Aside>
+
+Good to know about the queue:
+
+- Site Poster Pro checks the queue **every five minutes**, so a document can appear a few minutes after its exact time. Busy queues may take longer.
+- Changed your mind? Click **Cancel** next to a scheduled document before it is created.
+- Use **Refresh queue** to update the list and **Show completed history** to see published documents.
+
+## Find your URLs
+
+All documents are saved under [Published URLs](/results/published-urls/):
+
+- **Published** documents with their public `/pub` URL;
+- **Created** (private) documents with their edit link.
+
+Use **Copy URLs** in the results to copy all links at once. Public URLs are used when they are verified.
+
+Created documents in an earlier session that aren't listed? Connect Google Docs and click **Sync existing Docs to Published URLs**. This finds the documents Site Poster Pro created in your Google account and adds their edit links.
+
+You can also see scheduled and published documents in the [Publishing Calendar](/scheduling/publishing-calendar/). Select the client and the week to view them.
 
 ## Troubleshooting
+
+**"Reconnect your Google account and retry."**
+Your Google sign-in has expired. It lasts about an hour. Click **Reconnect / switch Google account** and try again. Documents that were already created are kept and won't be created twice.
+
+**"Manual publishing needed."**
+Google did not allow the automatic publication, or the public check failed. Use **Publish to Web via Google API** again, or publish manually via File → Share → Publish to web and paste the `/pub` URL.
+
+**"Paste the public Google Docs Publish to web URL (ending in /pub)."**
+You pasted the private `/edit` link. Use the URL from File → Share → Publish to web instead.
+
+**"Choose 1–15 valid TXT files to schedule."**
+The scheduler takes at most 15 files per batch. Split larger batches.
+
+**"Connect Scheduler (offline) and select a Google account first."**
+The scheduler needs its own authorization. Click **Connect Scheduler (offline)**.
+
+**"Select a start date and time at least one minute in the future."**
+Pick a later start time.
+
+**A scheduled document is a few minutes late.**
+That's normal. The queue is checked every five minutes.
+
+**Start over with another Google account.**
+Click **Reset Google Docs**. This clears the form and disconnects the Google accounts, including the scheduler. Published URLs and completed history stay saved. Cancel scheduled documents first.
